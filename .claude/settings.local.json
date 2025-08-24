@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node:*)",
+      "WebFetch(domain:kakuyomu.jp)",
+      "Bash(chmod:*)",
+      "Bash(sh:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
