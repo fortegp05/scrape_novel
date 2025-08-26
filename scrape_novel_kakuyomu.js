@@ -246,6 +246,10 @@ async function main() {
                     // 章のHTMLを取得
                     const chapterHtml = await fetchUrl(chapterUrl);
                     
+                    // 章のHTMLを保存
+                    const htmlFilename = `chapter_${chapterNum.toString().padStart(3, '0')}.html`;
+                    fs.writeFileSync(path.join(OUTPUT_DIR, htmlFilename), chapterHtml);
+                    
                     // 章のタイトルを抽出
                     const chapterTitle = extractTitle(chapterHtml);
                     
@@ -253,9 +257,9 @@ async function main() {
                     const chapterContent = extractNovelContent(chapterHtml);
                     
                     if (chapterContent) {
-                        const filename = `chapter_${chapterNum.toString().padStart(3, '0')}.txt`;
-                        fs.writeFileSync(path.join(OUTPUT_DIR, filename), chapterContent);
-                        console.log(`第${chapterNum}章「${chapterTitle}」保存完了`);
+                        const textFilename = `chapter_${chapterNum.toString().padStart(3, '0')}.txt`;
+                        fs.writeFileSync(path.join(OUTPUT_DIR, textFilename), chapterContent);
+                        console.log(`第${chapterNum}章「${chapterTitle}」保存完了 (テキスト・HTML両方)`);
                     } else {
                         console.error(`第${chapterNum}章のコンテンツ抽出に失敗しました`);
                     }
